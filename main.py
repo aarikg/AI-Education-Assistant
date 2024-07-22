@@ -25,7 +25,7 @@ app.layout = html.Div([
     dcc.Input(id='topic-input', type='text', placeholder='Enter a topic...'),
     html.Button('Ask Question', id='ask-button', n_clicks=0),
     html.Div(id='question-area', children='Question:'), 
-    html.Div(id='answer-area', children='', style={'display': 'none'}),  # Initially hide answer
+    html.Div(id='answer-area', children='', style={'display': 'none'}),  
     html.Button('Show Answer', id='show-answer-button', n_clicks=0)
 ])
 
@@ -33,8 +33,8 @@ app.layout = html.Div([
 @app.callback(
     Output('question-area', 'children'),
     Output('answer-area', 'children'),
-    Output('topic-input', 'value'),  # Clear the input
-    Output('answer-area', 'style'),  # Control visibility of answer
+    Output('topic-input', 'value'), 
+    Output('answer-area', 'style'), 
     Input('ask-button', 'n_clicks'),
     Input('show-answer-button', 'n_clicks'),
     Input('topic-input', 'value')
@@ -43,9 +43,9 @@ def process_question(ask_clicks, show_clicks, topic):
     if ask_clicks > 0 and topic:
         generation = generate_question(topic)
         #print(generation)
-        return f'Question: {generation[0]}', f'Answer: {generation[1]}', '', {'display': 'none'}  # Hide answer initially
-    elif show_clicks > 0:  # Check if answer exists
-        return dash.no_update, dash.no_update, dash.no_update, {'display': 'block'}  # Show answer
+        return f'Question: {generation[0]}', f'Answer: {generation[1]}', '', {'display': 'none'}
+    elif show_clicks > 0:  
+        return dash.no_update, dash.no_update, dash.no_update, {'display': 'block'}  
     else:
         return dash.no_update, dash.no_update, dash.no_update, dash.no_update
 
