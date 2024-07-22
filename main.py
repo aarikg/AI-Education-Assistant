@@ -7,7 +7,7 @@ from IPython.display import display
 from IPython.display import Markdown
 from dash import Dash, html, dcc, Input, Output, dash
 import time
-genai.configure(api_key="AIzaSyBEfj07k620yMmRawaGVlqqHxC5-KFZZuo")
+genai.configure(api_key="insert your key")
 model = genai.GenerativeModel('gemini-pro')
 
 def generate_question(topic):
